@@ -223,7 +223,7 @@ const loginUser = async function (req, res) {
 
 //Get User API
 
-const getUser = async (req, res) => {
+const getUser = async function (req, res) {
     try {
         let userId = req.params.userId;
 

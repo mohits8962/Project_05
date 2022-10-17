@@ -8,7 +8,7 @@ const { isValidRequestBody, isValid, isValidObjectId, isValidImg } = require("..
 
 
 //Crate Product API
-const createProducts = async (req, res) => {
+const createProducts = async function (req, res) {
     try {
         let data = req.body;
         let file = req.files;
@@ -149,7 +149,7 @@ const getProductByFilter = async function (req, res) {
                 }
                 data["availableSizes"] = { $in: size };
             } else {
-                return res.status(400).send({status: false, message: "Provide The size as u have selected"});
+                return res.status(400).send({ status: false, message: "Provide The size as u have selected" });
             }
         }
 
@@ -158,7 +158,7 @@ const getProductByFilter = async function (req, res) {
             if (name.trim().length > 0) {
                 data["title"] = name;
             } else {
-                return res.status(400).send({status: false,message: "Provide The name as u have selected" });
+                return res.status(400).send({ status: false, message: "Provide The name as u have selected" });
             }
         }
 
@@ -166,25 +166,25 @@ const getProductByFilter = async function (req, res) {
         if (priceGreaterThan != null) {
             if (priceGreaterThan.length > 0) {
                 if (!/^[0-9]*$/.test(priceGreaterThan)) {
-                    return res.status(400).send({status: false,message: "priceGreaterThan should be in numbers"});
+                    return res.status(400).send({ status: false, message: "priceGreaterThan should be in numbers" });
                 }
                 data["price"] = { $gte: priceGreaterThan };
             } else {
-                return res.status(400).send({status: false,message: "Provide The priceGreaterThan as u have selected"});
+                return res.status(400).send({ status: false, message: "Provide The priceGreaterThan as u have selected" });
             }
         }
 
         if (priceLessThan != null) {
             if (priceLessThan.length > 0) {
                 if (!/^[0-9]*$/.test(priceLessThan)) {
-                    return res.status(400).send({status: false,message: "priceLessThan should be in numbers"});
+                    return res.status(400).send({ status: false, message: "priceLessThan should be in numbers" });
                 }
                 if (priceLessThan <= 0) {
                     return res.status(400).send({ status: false, message: "priceLessThan can't be zero" });
                 }
                 data["price"] = { $lte: priceLessThan };
             } else {
-                return res.status(400).send({status: false, message: "Provide The priceLessThan as u have selected"});
+                return res.status(400).send({ status: false, message: "Provide The priceLessThan as u have selected" });
             }
         }
 
