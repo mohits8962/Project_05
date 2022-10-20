@@ -3,6 +3,7 @@ const router = express.Router();
 const userController = require("../controllers/userController")
 const productController = require("../controllers/productsController")
 const cartController = require("../controllers/cartController")
+const orderController = require("../controllers/orderController")
 const middleware = require("../middlewares/middleware")
 
 
@@ -25,6 +26,9 @@ router.get("/users/:userId/cart", middleware.authentication, cartController.getC
 router.put("/users/:userId/cart", middleware.authentication, cartController.updateCart)
 router.delete("/users/:userId/cart", middleware.authentication, cartController.deleteCart)
 
+//Order Apis
+router.post("/users/:userId/orders", middleware.authentication, orderController.createOrder)
+router.put("/users/:userId/orders", middleware.authentication, orderController.updateOrder)
 
 
 

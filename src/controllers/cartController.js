@@ -260,7 +260,7 @@ const updateCart = async function (req, res) {
 
         //cardId validation
         if (!cartId) {
-            return res.status(400).send({ status: false, message: "Provide the carrId" });
+            return res.status(400).send({ status: false, message: "Provide the cartId" });
         }
         if (!isValidObjectId(cartId)) {
             return res.status(400).send({ status: false, message: "Invalid cartId" });
