@@ -34,6 +34,11 @@ const createOrder = async function (req, res) {
         }
         data["userId"] = userId;
 
+        // //cancellable validation
+        // if (!(cancellable == "true" || cancellable == "false")) {
+        //     return res.status(400).send({ status: false, message: "cancellable Should be true Or false" });
+        // }
+
         //Cart Validation
         if (!data.cartId.trim()) {
             return res.status(400).send({ status: false, message: "Provide The CartId" });
@@ -128,7 +133,7 @@ const updateOrder = async (req, res) => {
 
         //userId checking from OrderId
         if (orderExist.userId != userId) {
-            return res.status(403).send({status: false, message: "Either this OrderId or userId is not Urs"});
+            return res.status(403).send({ status: false, message: "Either this OrderId or userId is not Urs" });
         }
 
         //status validation
@@ -157,8 +162,6 @@ const updateOrder = async (req, res) => {
             return res.status(400).send({ status: false, message: "This Order Can't be cancelled" });
         } else {
             orderExist.status = status;
-            // orderExist.isDeleted = true; //no requirement in our project
-            // orderExist.deletedAt = Date.now();
             let updated = await orderModel.findOneAndUpdate(
                 { _id: orderId },
                 { $set: orderExist },
