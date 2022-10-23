@@ -34,11 +34,6 @@ const createOrder = async function (req, res) {
         }
         data["userId"] = userId;
 
-        // //cancellable validation
-        // if (!(cancellable == "true" || cancellable == "false")) {
-        //     return res.status(400).send({ status: false, message: "cancellable Should be true Or false" });
-        // }
-
         //Cart Validation
         if (!data.cartId.trim()) {
             return res.status(400).send({ status: false, message: "Provide The CartId" });

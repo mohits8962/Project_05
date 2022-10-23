@@ -175,10 +175,12 @@ const getCart = async function (req, res) {
                 .status(403)
                 .send({ status: false, message: "Unauthorized Access" });
         }
+
         //userId valid or not
         if (!isValidObjectId(userId)) {
             return res.status(400).send({ status: false, message: "Invalid UserId" });
         }
+
         //user exist or not
         let userExist = await userModel.findById(userId);
         if (!userExist) {
@@ -222,10 +224,12 @@ const updateCart = async function (req, res) {
         if (!isValidObjectId(userId)) {
             return res.status(400).send({ status: false, message: "Invalid UserId" });
         }
+
         //user authorization
         if (userId != req.userId) {
             return res.status(403).send({ status: false, message: "Unauthorized Access" });
         }
+
         //user exist or not
         let userExist = await userModel.findById(userId);
         if (!userExist) {
@@ -236,9 +240,11 @@ const updateCart = async function (req, res) {
         if (!productId) {
             return res.status(400).send({ status: false, message: "Provide the ProductId" });
         }
+
         if (!isValidObjectId(productId)) {
             return res.status(400).send({ status: false, message: "Invalid ProductId" });
         }
+
         //product exist or not
         let product = await productModel.findById(productId);
         if (!product) {
@@ -262,6 +268,7 @@ const updateCart = async function (req, res) {
         if (!cartId) {
             return res.status(400).send({ status: false, message: "Provide the cartId" });
         }
+        
         if (!isValidObjectId(cartId)) {
             return res.status(400).send({ status: false, message: "Invalid cartId" });
         }

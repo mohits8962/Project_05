@@ -266,6 +266,7 @@ const updateProduct = async function (req, res) {
             }
             newObj["title"] = title;
         }
+        
         //description validation
         if (description != null) {
             if (!isValid(description)) {
